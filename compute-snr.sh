@@ -2,6 +2,9 @@
 
 # This code will compute the temporal snr following code developed for the HCP processing pipeline
 
+set -x
+set -e
+
 #### Parse inputs ####
 dwi=`jq -r '.dwi' config.json`
 bvals=`jq -r '.bvals' config.json`
