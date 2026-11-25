@@ -10,9 +10,9 @@
   <a href="https://github.com/brainlife/app-compute-temporal-snr/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="MIT license"></a>
 </p>
 
-> 📍 **This branch, `v1.0`, is the brainlife.io App Compute  tSNR of DMRI Images** ([doi:10.25663/brainlife.app.378](https://doi.org/10.25663/brainlife.app.378)).
+> **This branch, `v1.0`, is the brainlife.io App Compute  tSNR of DMRI Images** ([doi:10.25663/brainlife.app.378](https://doi.org/10.25663/brainlife.app.378)).
 
-## 🧠 At a glance
+## At a glance
 
 <!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
 
@@ -22,20 +22,20 @@ Extracts the b=0 volumes, divides their temporal mean by their temporal standard
 
 | | |
 |---|---|
-| 📥 **Inputs** | `neuro/mask` (optional) · `neuro/dwi` |
-| 📤 **Outputs** | `neuro/snr` · `raw` |
-| 🐳 **Container** | `brainlife/fsl:5.0.9` |
-| ⚙️ **Resources** | 4 CPUs · 0.33 h walltime |
-| 🔗 **Run it** | [doi.org/10.25663/brainlife.app.378](https://doi.org/10.25663/brainlife.app.378) |
+| **Inputs** | `neuro/mask` (optional) · `neuro/dwi` |
+| **Outputs** | `neuro/snr` · `raw` |
+| **Container** | `brainlife/fsl:5.0.9` |
+| **Resources** | 4 CPUs · 0.33 h walltime |
+| **Run it** | [doi.org/10.25663/brainlife.app.378](https://doi.org/10.25663/brainlife.app.378) |
 
-#### 📥 Inputs
+#### Inputs
 
 | Input | Datatype | Required | Description |
 |---|---|---|---|
 | `brainmask` | `neuro/mask` | no | Optional brain mask in DWI space; if absent, one is made with FSL bet from the mean b0. |
 | `dwi` | `neuro/dwi` | yes | DWI image with bvals and bvecs. Needs more than one b=0 volume. |
 
-#### 📤 Outputs
+#### Outputs
 
 | Output | Datatype | Description |
 |---|---|---|
@@ -44,13 +44,13 @@ Extracts the b=0 volumes, divides their temporal mean by their temporal standard
 
 <!-- brainlife-app:end -->
 
-## 🚀 Running the App
+## Running the App
 
-### ☁️ On brainlife.io
+### On brainlife.io
 
 Open the App at [doi.org/10.25663/brainlife.app.378](https://doi.org/10.25663/brainlife.app.378), choose a `neuro/dwi` dataset (and, optionally, a brain mask in DWI space) from your project and press **Execute**. The App follows the tSNR computation of the Human Connectome Project minimal preprocessing pipeline and archives a `neuro/snr` dataset tagged `tSNR` and a `raw` dataset with the intermediate images. Use it as a quality-control measure; the DWI needs several b0 volumes for a meaningful standard deviation.
 
-### 💻 Locally
+### Locally
 
 You need [Singularity/Apptainer](https://apptainer.org/) and [`jq`](https://jqlang.github.io/jq/). The App runs FSL from the `brainlife/fsl:5.0.9` container.
 
@@ -72,7 +72,7 @@ You need [Singularity/Apptainer](https://apptainer.org/) and [`jq`](https://jqla
    ./main
    ```
 
-### 🧪 Sample data
+### Sample data
 
 Download sample datasets from brainlife.io with the [brainlife CLI](https://github.com/brainlife/cli):
 
@@ -83,7 +83,7 @@ mkdir input
 bl dataset download <dataset-id>
 ```
 
-## 📦 Outputs
+## Outputs
 
 The App extracts the b=0 volumes (`select_dwi_vols`), divides their temporal mean by their temporal standard deviation (`fslmaths -Tmean`, `-Tstd`, `-div`) and masks the result.
 
@@ -93,11 +93,11 @@ raw/                intermediate images: nodif (b0 volumes), nodif_mean, nodif_s
                     unmasked snr and, when no mask is given, the bet mask
 ```
 
-## 🩺 Troubleshooting
+## Troubleshooting
 
 - **`temporal snr calculation failed. see logs and derivatives`**: the masked tSNR image was not produced. Check that the DWI has b0 volumes and that the bvals match the DWI.
 
-## 📚 Citing
+## Citing
 
 > [!TIP]
 > If you use this App in your work, please cite the App, the software it builds on and brainlife.io (below). GitHub's **Cite this repository** button gives the App citation in APA and BibTeX.
@@ -112,14 +112,14 @@ raw/                intermediate images: nodif (b0 volumes), nodif_mean, nodif_s
 - Jenkinson et al. FSL. *NeuroImage* 62:782-790 (2012). [doi:10.1016/j.neuroimage.2011.09.015](https://doi.org/10.1016/j.neuroimage.2011.09.015)
 - Hayashi S, Caron BA, Heinsfeld AS, et al. brainlife.io: a decentralized and open-source cloud platform to support neuroscience research. *Nature Methods* 21:809–813 (2024). [doi:10.1038/s41592-024-02237-2](https://doi.org/10.1038/s41592-024-02237-2)
 
-## 👥 Authors
+## Authors
 
 - Brad Caron
 - Franco Pestilli (project director)
 
 **Contributors:** Soichi Hayashi
 
-## 💰 Funding
+## Funding
 
 [![Wellcome-226486/Z/22/Z](https://img.shields.io/badge/Wellcome-226486%2FZ%2F22%2FZ-purple.svg)](https://wellcome.org/)
 [![NIH-NINDS-U24NS140384](https://img.shields.io/badge/NIH_NINDS-U24NS140384-green.svg)](https://reporter.nih.gov/project-details/11261037)
@@ -138,6 +138,6 @@ raw/                intermediate images: nodif (b0 volumes), nodif_mean, nodif_s
 
 <sub>brainlife.io is publicly funded, and acknowledging that support helps keep it running. This App was developed with support from Wellcome, the U.S. National Institutes of Health (including the BRAIN Initiative BRAIN CONNECTS program: The Axonal Projectome EXchange, U24NS140384, and the Center for Mesoscale Connectomics, UM1NS132207) and the U.S. National Science Foundation.</sub>
 
-## ⚖️ License
+## License
 
 [MIT](https://github.com/brainlife/app-compute-temporal-snr/blob/master/LICENSE). FSL itself is distributed under its own [license](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/Licence).
