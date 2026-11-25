@@ -3,6 +3,32 @@
 
 # Compute tSNR of DMRI Images
 
+<!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
+
+**Computes a temporal signal-to-noise ratio (tSNR) map from the b0 volumes of a DWI with FSL, following the HCP minimal preprocessing pipeline, and masks it to the brain.**
+
+Extracts the b=0 volumes, divides their temporal mean by their temporal standard deviation and masks the result with the given brain mask, or with an FSL bet mask of the mean b0 if none is given. Use it as a DWI quality-control measure; it needs several b0 volumes for a meaningful standard deviation.
+
+Run it on brainlife.io: [https://doi.org/10.25663/brainlife.app.378](https://doi.org/10.25663/brainlife.app.378)
+
+| Input | Datatype | Required | Description |
+|---|---|---|---|
+| `brainmask` | `neuro/mask` | no | Optional brain mask in DWI space; if absent, one is made with FSL bet from the mean b0. |
+| `dwi` | `neuro/dwi` | yes | DWI image with bvals and bvecs. Needs more than one b=0 volume. |
+
+| Output | Datatype | Description |
+|---|---|---|
+| `outdir` | `neuro/snr` | Brain-masked tSNR map (snr.nii.gz): mean b0 signal divided by its standard deviation. |
+| `raw` | `raw` | Intermediate images (b0 volumes, mean, standard deviation, unmasked SNR, mask). |
+
+Runtime: container `brainlife/fsl:5.0.9`; 4 CPUs; 0.33 h walltime.
+
+Please cite:
+- Avesani P, McPherson B, Hayashi S, et al. The open diffusion data derivatives, brain data upcycling via integrated publishing of derivatives and reproducible open cloud services. Sci Data 6, 69 (2019). [doi:10.1038/s41597-019-0073-y](https://doi.org/10.1038/s41597-019-0073-y)
+- Woolrich MW, Jbabdi S, Patenaude B, et al. Bayesian analysis of neuroimaging data in FSL. NeuroImage 45:S173-86 (2009).
+
+<!-- brainlife-app:end -->
+
 This app will This app will compute the temporal signal-to-noise ratio (tSNR) across the volumes of a DMRI image. This app uses FSL and follows code outlined by the Human Connectome Minimal Preprocessing Pipeline for DMRI data.
 
 ### Authors
